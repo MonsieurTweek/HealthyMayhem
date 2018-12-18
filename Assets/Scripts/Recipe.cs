@@ -10,6 +10,9 @@ public class Recipe : MonoBehaviour
     public List<int> m_NbIngredient;
     public Dictionary<Ingredient, int> m_Ingredients;
     public int m_ShakeTime;
+    public List<Topping> m_Topping;
+    public Sprite m_Sprite;
+
 
     // Start is called before the first frame update
     void Start()

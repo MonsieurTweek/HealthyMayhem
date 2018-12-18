@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 994377531590358222}
   - component: {fileID: 8361390902068021046}
   m_Layer: 0
-  m_Name: Recipe2
+  m_Name: Recipe_2_Beanie
   m_TagString: Recipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,12 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad0a7b5d1699c9499c86dbd5ce7cd5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RecipeName: Ibiza
-  m_Price: 18.9
+  m_RecipeName: Beanie
+  m_Price: 11.9
   m_IngredientList:
+  - {fileID: 3887581574736415889, guid: 88d4d573b90adc04c8ea1c96d458a2e6, type: 3}
   - {fileID: 7733158120902699835, guid: 829082eb66452ce47af41615a1609722, type: 3}
-  - {fileID: 7981275666908594646, guid: f96ac7958e265024fad9aee2d0b9707e, type: 3}
   - {fileID: 5562254238725921444, guid: 5d12dc4715689ea4b90a02a9f834264a, type: 3}
-  - {fileID: 409922277494297172, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
-  m_NbIngredient: 06000000030000000100000001000000
-  m_ShakeTime: 7
+  m_NbIngredient: 010000000200000006000000
+  m_ShakeTime: 9
+  m_Topping:
+  - {fileID: 8649803036544326686, guid: 6f8eba59bc2edfc44965f6a93b34329a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f027df39f14e42f48805fc5d97dc2fb1, type: 3}
