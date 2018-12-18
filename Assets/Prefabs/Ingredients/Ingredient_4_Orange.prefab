@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6410244852594570288}
   - component: {fileID: 7733158120902699835}
   m_Layer: 0
-  m_Name: Orange
+  m_Name: Ingredient_4_Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 4
-  m_IngredientName: Orange
+  m_IngredientName: orange
   m_NbInput: 7

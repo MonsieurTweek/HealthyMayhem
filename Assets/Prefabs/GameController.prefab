@@ -51,7 +51,15 @@ MonoBehaviour:
   - {fileID: 2745297841609718298, guid: 3d3fdea07bf96844eb3e718ea2b3015a, type: 3}
   - {fileID: 6494016430431935145, guid: 98ebdb9eb7a67534abee9c78e77ab28e, type: 3}
   m_CurrentOrder: 0
-  m_HUD_Order_Customer: {fileID: 1466837582750185432, guid: e3c60fc22e4423344b0f82b043d2f61f,
-    type: 3}
-  m_HUD_Order_Recipe: {fileID: 6053957717734116753, guid: afb5397b337a22a47a58f113481b2b02,
-    type: 3}
+  m_Order_Recipe: {fileID: 0}
+  m_Order_Customer: {fileID: 0}
+  m_Apple_Count_Text: {fileID: 0}
+  m_Banana_Count_Text: {fileID: 0}
+  m_Carrot_Count_Text: {fileID: 0}
+  m_Orange_Count_Text: {fileID: 0}
+  m_Shaker_Count_Text: {fileID: 0}
+  m_Ingredients_Bell_Count_Text: {fileID: 0}
+  m_Quinoa_Count_Text: {fileID: 0}
+  m_Goji_Count_Text: {fileID: 0}
+  m_Mint_Count_Text: {fileID: 0}
+  m_Topping_Bell_Count_Text: {fileID: 0}

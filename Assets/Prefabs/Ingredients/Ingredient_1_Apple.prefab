@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 1
-  m_IngredientName: Pomme
+  m_IngredientName: apple
   m_NbInput: 4

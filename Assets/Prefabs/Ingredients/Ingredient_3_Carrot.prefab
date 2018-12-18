@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 631124504483056459}
   - component: {fileID: 5562254238725921444}
   m_Layer: 0
-  m_Name: Carrot
+  m_Name: Ingredient_3_Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 3
-  m_IngredientName: Carotte
+  m_IngredientName: carrot
   m_NbInput: 9

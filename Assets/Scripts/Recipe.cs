@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recipe : MonoBehaviour
+public class Recipe : MonoBehaviour, ISerializationCallbackReceiver
 {
     public string m_RecipeName;
     public float m_Price;

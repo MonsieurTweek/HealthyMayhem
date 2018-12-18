@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8442900878245872027}
   - component: {fileID: 3887581574736415889}
   m_Layer: 0
-  m_Name: Banana
+  m_Name: Ingredient_2_Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 2
-  m_IngredientName: Banane
+  m_IngredientName: banana
   m_NbInput: 6
