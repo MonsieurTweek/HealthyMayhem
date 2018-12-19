@@ -329,6 +329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8653032464011806866, guid: 0e6f9d8843feb4f47809f3968482978a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8653032464011806867, guid: 0e6f9d8843feb4f47809f3968482978a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,6 +388,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787793607336198621, guid: 0e6f9d8843feb4f47809f3968482978a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653032463810664783, guid: 0e6f9d8843feb4f47809f3968482978a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653032464634054931, guid: 0e6f9d8843feb4f47809f3968482978a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653032464427814567, guid: 0e6f9d8843feb4f47809f3968482978a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6f9d8843feb4f47809f3968482978a, type: 3}
@@ -492,6 +517,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b8f3a3d1360d541aa20e2ea25ade21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &2119787379 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6422636087311250914, guid: ec133619a40c12f4fb21b2c43c675f2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6422636086681185955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1504552490146904434 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1504552490146904434, guid: ec133619a40c12f4fb21b2c43c675f2d,
@@ -777,6 +808,23 @@ PrefabInstance:
       propertyPath: m_IngredientsUI.Array.data[9]
       value: 
       objectReference: {fileID: 1504552490888990540}
+    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
+        type: 3}
+      propertyPath: m_ResultScreenFail
+      value: 
+      objectReference: {fileID: 3138954346074972874, guid: b6519aa750ba0b0418719635c16dd543,
+        type: 3}
+    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
+        type: 3}
+      propertyPath: m_ResultScreenSuccess
+      value: 
+      objectReference: {fileID: 1754926898248330978, guid: 68f5911c0048fec42af904bd6055c03c,
+        type: 3}
+    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
+        type: 3}
+      propertyPath: m_CanvasIngredients
+      value: 
+      objectReference: {fileID: 2119787379}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24873d8bdab71f42b55e9a9fbe0abf0, type: 3}
 --- !u!1001 &6422636086681185955
@@ -790,6 +838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasIngredients
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422636087311250845, guid: ec133619a40c12f4fb21b2c43c675f2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6422636087311250913, guid: ec133619a40c12f4fb21b2c43c675f2d,
         type: 3}
@@ -895,6 +948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422636087311250914, guid: ec133619a40c12f4fb21b2c43c675f2d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec133619a40c12f4fb21b2c43c675f2d, type: 3}

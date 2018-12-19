@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     // HUD
     [Header("----- HUD -----")]
+    public Canvas m_CanvasIngredients;
     public GameObject m_Order_Recipe;
     public GameObject m_Order_Customer;
 
@@ -17,11 +18,26 @@ public class GameController : MonoBehaviour
     [Header("----- Texts Controllers -----")]
     public List<UIIngredientController> m_IngredientsUI;
 
+    // Results screens
+    [Header("----- Result Screens -----")]
+    public UIResultScreenController m_ResultScreenSuccess;
+    public UIResultScreenController m_ResultScreenFail;
+    public UIResultScreenController m_ResultScreenInstance;
+    // States
+    // 0 - Start Screen
+    // 1 - Customer waiting
+    // 2 - Order result screen
+    // 3 - End game screen
+    public int m_CurrentState;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        m_CurrentState = 1;
+
         // Init UI texts
-        foreach(UIIngredientController controller in m_IngredientsUI)
+        foreach (UIIngredientController controller in m_IngredientsUI)
         {
             controller.ResetCounterToDefault();
         }
@@ -31,8 +47,48 @@ public class GameController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        switch(m_CurrentState)
+        {
+            case 1 :
+                if(Input.GetKeyDown(KeyCode.F1))
+                {
+                    ShowResultScreen(true);
+                } else if(Input.GetKeyDown(KeyCode.F2))
+                {
+                    ShowResultScreen(false);
+                }
+                break;
 
+            case 2 :
+                if(Input.GetKeyDown(KeyCode.F5))
+                {
+                    HideResultScreen();
+                }
+                break;
+        }
+    }
+
+    public void ShowResultScreen(bool success)
+    {
+        if(success == true)
+        {
+            m_ResultScreenInstance = Instantiate(m_ResultScreenSuccess);
+        } else
+        {
+            m_ResultScreenInstance = Instantiate(m_ResultScreenFail);
+        }
+
+        m_ResultScreenInstance.gameObject.SetActive(true);
+        m_CanvasIngredients.gameObject.SetActive(false);
+        m_CurrentState = 2;
+    }
+
+    public void HideResultScreen()
+    {
+        Destroy(m_ResultScreenInstance.gameObject);
+        m_CanvasIngredients.gameObject.SetActive(true);
+        m_CurrentState = 1;
     }
 
     public void GenerateOrder()
