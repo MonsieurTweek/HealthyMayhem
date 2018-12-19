@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     public List<Order> m_Orders;
     public int m_CurrentOrder = 0;
+    public List<float> m_Results;
 
     // HUD
     [Header("----- HUD -----")]
@@ -53,10 +54,10 @@ public class GameController : MonoBehaviour
             case 1 :
                 if(Input.GetKeyDown(KeyCode.F1))
                 {
-                    ShowResultScreen(true);
+                    ShowResultScreen(true, m_Orders[m_CurrentOrder].m_Recipe);
                 } else if(Input.GetKeyDown(KeyCode.F2))
                 {
-                    ShowResultScreen(false);
+                    ShowResultScreen(false, m_Orders[m_CurrentOrder].m_Recipe);
                 }
                 break;
 
@@ -69,11 +70,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ShowResultScreen(bool success)
+    public void ShowResultScreen(bool success, Recipe recipe)
     {
         if(success == true)
         {
             m_ResultScreenInstance = Instantiate(m_ResultScreenSuccess);
+            m_ResultScreenInstance.UpdateImage(recipe.m_Sprite);
+            m_ResultScreenInstance.UpdateText(recipe.m_Price);
         } else
         {
             m_ResultScreenInstance = Instantiate(m_ResultScreenFail);

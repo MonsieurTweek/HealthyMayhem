@@ -55,6 +55,8 @@ public class Order : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+
+        m_GameController.m_CurrentState = 1;
     }
 
     // Update is called once per frame
@@ -123,9 +125,34 @@ public class Order : MonoBehaviour
                 m_Step++;   //Player 1 send the order to the customer
             }
         } else if (m_Step == 2) {
-            //results
-        }
+            if (m_Status != "failed") {
+                foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
+                    ingredient = ingredientInDictionary.Key;
+                    if (m_IngredientsDone[ingredient] != m_Recipe.m_Ingredients[ingredient]) {
+                        m_Status = "failed";
+                        break;
+                    }
+                }
 
-        //Debug.Log(m_Status);
+                if (Mathf.RoundToInt(m_Shaking) != m_Recipe.m_ShakeTime) {
+                    m_Status = "failed";
+                }
+
+                foreach (Topping topping in m_Recipe.m_Toppings) {
+                    if (m_ToppingsDone[topping] != 1) {
+                        m_Status = "failed";
+                        break;
+                    }
+                }
+            }
+
+            if(m_Status == "failed" && m_GameController.m_CurrentState == 1) {
+                m_GameController.m_Results.Add(0);
+                m_GameController.ShowResultScreen(false, m_Recipe);
+            } else if(m_GameController.m_CurrentState == 1) {
+                m_GameController.m_Results.Add(m_Recipe.m_Price);
+                m_GameController.ShowResultScreen(true, m_Recipe);
+            }
+        }
     }
 }
