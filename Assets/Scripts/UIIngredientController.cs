@@ -51,6 +51,10 @@ public class UIIngredientController : MonoBehaviour
         
     }
 
+    public void ResetInputFillerToDefault() {
+        m_FillerComponent.fillAmount = 0;
+    }
+
     public void SetFiller(int current, int max)
     {
         m_FillerComponent.fillAmount = (float) current / (float) max;

@@ -96,6 +96,8 @@ public class GameController : MonoBehaviour
 
     public void GenerateOrder()
     {
+        ResetCounter();
+        ResetInputFiller();
         Order newOrder = Instantiate(m_Orders[m_CurrentOrder]);
         m_CurrentOrder++;
 
@@ -119,6 +121,12 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ResetCounter() {
+        foreach (UIIngredientController controller in m_IngredientsUI) {
+            controller.ResetCounterToDefault();
+        }
+    }
+
     public void SetInputFillerValue(string key, int current, int max)
     {
         foreach (UIIngredientController controller in m_IngredientsUI)
@@ -128,5 +136,19 @@ public class GameController : MonoBehaviour
                 controller.SetFiller(current, max);
             }
         }
+    }
+
+    public void ResetInputFiller() {
+        foreach (UIIngredientController controller in m_IngredientsUI) {
+            controller.ResetInputFillerToDefault();
+        }
+    }
+
+    public void DestroyOrder(Order order) {
+        Destroy(order.m_CustomerClone.gameObject);
+        Destroy(order.m_RecipeClone.gameObject);
+        Destroy(order.gameObject);
+        //Debug.Log(order.m_Recipe);
+        //Debug.Log(order.m_Customer);
     }
 }

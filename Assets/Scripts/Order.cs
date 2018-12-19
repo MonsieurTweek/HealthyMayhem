@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class Order : MonoBehaviour
 {
     public Customer m_Customer;
+    [HideInInspector]
+    public Customer m_CustomerClone;
     public Recipe m_Recipe;
+    [HideInInspector]
+    public Recipe m_RecipeClone;
     public Dictionary<Ingredient, int> m_IngredientsDone = new Dictionary<Ingredient, int>();
     public Dictionary<Ingredient, int> m_InputsIngredient = new Dictionary<Ingredient, int>();
     public Dictionary<Topping, int> m_ToppingsDone = new Dictionary<Topping, int>();
     public Dictionary<Topping, int> m_InputsTopping = new Dictionary<Topping, int>();
     public string m_Status = "waiting";
     public int m_Step = 0;
-    public float m_Shaking;
+    public float m_Shaking = 0;
 
     [HideInInspector]
     public GameController m_GameController;
@@ -26,21 +30,18 @@ public class Order : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Customer newCustomer = Instantiate(m_Customer);
-        Recipe newRecipe = Instantiate(m_Recipe);
+        m_CustomerClone = Instantiate(m_Customer);
+        m_RecipeClone = Instantiate(m_Recipe);
 
         // Update UI
-        Debug.Log(newRecipe);
-        foreach(KeyValuePair<Ingredient, int> element in newRecipe.m_Ingredients)
+        Debug.Log(m_Recipe);
+        foreach(KeyValuePair<Ingredient, int> element in m_Recipe.m_Ingredients)
         {
             m_GameController.SetInputCounterValue(element.Key.m_IngredientName, 0, element.Value);
         }
         m_GameController.SetInputCounterValue("ingredient_bell", 0, 1);
-        m_GameController.SetInputCounterValue("shaker", 0, newRecipe.m_ShakeTime);
+        m_GameController.SetInputCounterValue("shaker", 0, m_Recipe.m_ShakeTime);
         m_GameController.SetInputCounterValue("topping_bell", 0, 1);
-
-        Instantiate(m_Customer);
-        Instantiate(m_Recipe);
 
         foreach (var ingredient in m_Recipe.m_Ingredients) {
             m_IngredientsDone.Add(ingredient.Key, 0);
@@ -53,8 +54,6 @@ public class Order : MonoBehaviour
 
             m_GameController.SetInputCounterValue(topping.m_ToppingName, 0, 1);
         }
-
-        Time.timeScale = 1f;
 
         m_GameController.m_CurrentState = 1;
     }
@@ -80,13 +79,13 @@ public class Order : MonoBehaviour
                     if (m_InputsIngredient[ingredient] == 0) {
                         m_InputsIngredient[ingredient] = ingredient.m_NbInput;
                         m_IngredientsDone[ingredient]++;
-                        m_GameController.SetInputCounterValue(ingredient.m_IngredientName, m_IngredientsDone[ingredient], ingredientInDictionary.Value);
 
                         Debug.Log(m_IngredientsDone[ingredient]);
                     }
                 }
 
                 m_GameController.SetInputFillerValue(ingredient.m_IngredientName, ingredient.m_NbInput - m_InputsIngredient[ingredient], ingredient.m_NbInput);
+                m_GameController.SetInputCounterValue(ingredient.m_IngredientName, m_IngredientsDone[ingredient], ingredientInDictionary.Value);
             }
 
             if (Input.GetKey(KeyCode.Mouse0) == true) {
@@ -112,38 +111,39 @@ public class Order : MonoBehaviour
                     if (m_InputsTopping[topping] == 0) {
                         m_InputsTopping[topping] = topping.m_NbInput;
                         m_ToppingsDone[topping]++;
-                        m_GameController.SetInputCounterValue(topping.m_ToppingName, m_ToppingsDone[topping], 1);
 
                         Debug.Log(m_ToppingsDone[topping]);
                     }
                 }
 
                 m_GameController.SetInputFillerValue(topping.m_ToppingName, topping.m_NbInput - m_InputsTopping[topping], topping.m_NbInput);
+                m_GameController.SetInputCounterValue(topping.m_ToppingName, m_ToppingsDone[topping], 1);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 1) {
                 m_Step++;   //Player 1 send the order to the customer
             }
         } else if (m_Step == 2) {
-            if (m_Status != "failed") {
-                foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
-                    ingredient = ingredientInDictionary.Key;
-                    if (m_IngredientsDone[ingredient] != m_Recipe.m_Ingredients[ingredient]) {
-                        m_Status = "failed";
-                        break;
-                    }
-                }
-
-                if (Mathf.RoundToInt(m_Shaking) != m_Recipe.m_ShakeTime) {
+            foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
+                ingredient = ingredientInDictionary.Key;
+                if (m_Status != "failed" && m_IngredientsDone[ingredient] != m_Recipe.m_Ingredients[ingredient]) {
                     m_Status = "failed";
                 }
+                m_IngredientsDone[ingredient] = 0;
+                m_InputsIngredient[ingredient] = 0;
+            }
 
-                foreach (Topping topping in m_Recipe.m_Toppings) {
-                    if (m_ToppingsDone[topping] != 1) {
-                        m_Status = "failed";
-                        break;
-                    }
+            if (m_Status != "failed" && Mathf.RoundToInt(m_Shaking) != m_Recipe.m_ShakeTime) {
+                m_Status = "failed";
+            }
+            m_Shaking = 0;
+
+            foreach (Topping topping in m_Recipe.m_Toppings) {
+                if (m_Status != "failed" && m_ToppingsDone[topping] != 1) {
+                    m_Status = "failed";
                 }
+                m_ToppingsDone[topping] = 0;
+                m_InputsTopping[topping] = 0;
             }
 
             if(m_Status == "failed" && m_GameController.m_CurrentState == 1) {
@@ -152,6 +152,17 @@ public class Order : MonoBehaviour
             } else if(m_GameController.m_CurrentState == 1) {
                 m_GameController.m_Results.Add(m_Recipe.m_Price);
                 m_GameController.ShowResultScreen(true, m_Recipe);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) == true) {
+                m_Step = 0;   //Start next customer
+                if((m_GameController.m_CurrentOrder + 1) < m_GameController.m_Orders.Count) {
+                    m_GameController.DestroyOrder(this);
+                    m_GameController.GenerateOrder();
+                    m_GameController.HideResultScreen();
+                } else {
+                    //End of day
+                }
             }
         }
     }
