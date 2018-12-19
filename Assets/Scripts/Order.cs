@@ -13,6 +13,7 @@ public class Order : MonoBehaviour
     public Dictionary<Topping, int> m_InputsTopping = new Dictionary<Topping, int>();
     public string m_Status = "waiting";
     public int m_Step = 0;
+    public float m_Shaking;
 
     [HideInInspector]
     public GameController m_GameController;
@@ -49,7 +50,11 @@ public class Order : MonoBehaviour
         foreach (Topping topping in m_Recipe.m_Toppings) {
             m_ToppingsDone.Add(topping, 0);
             m_InputsTopping.Add(topping, topping.m_NbInput);
+
+            m_GameController.SetInputCounterValue(topping.m_ToppingName, 0, 1);
         }
+
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -57,15 +62,7 @@ public class Order : MonoBehaviour
     {
         Ingredient ingredient;
 
-        if (m_Step == 0) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                m_Step++;   //Player 1 accepts the order
-            }
-        } else if(m_Step == 1) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                m_Step++;   //Player 2 accepts the order
-            }
-        } else if (m_Step == 2) {
+       if (m_Step == 0) {
             foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
                 ingredient = ingredientInDictionary.Key;
                 if (
@@ -75,27 +72,32 @@ public class Order : MonoBehaviour
                     (ingredient.m_IngredientName == "apple" && Input.GetKeyDown(KeyCode.DownArrow) == true)
                 ) {
                     m_InputsIngredient[ingredient]--;
+
                     Debug.Log(m_InputsIngredient[ingredient]);
 
                     if (m_InputsIngredient[ingredient] == 0) {
                         m_InputsIngredient[ingredient] = ingredient.m_NbInput;
                         m_IngredientsDone[ingredient]++;
+                        m_GameController.SetInputCounterValue(ingredient.m_IngredientName, m_IngredientsDone[ingredient], ingredientInDictionary.Value);
+
                         Debug.Log(m_IngredientsDone[ingredient]);
                     }
-                }
-
-                if (m_IngredientsDone[ingredient] > m_Recipe.m_Ingredients[ingredient]) {
-                    m_Status = "failed";
-                    m_Step = 4;
                 }
 
                 m_GameController.SetInputFillerValue(ingredient.m_IngredientName, ingredient.m_NbInput - m_InputsIngredient[ingredient], ingredient.m_NbInput);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 2) {
+            if (Input.GetKey(KeyCode.Mouse0) == true) {
+                m_Shaking += Time.deltaTime;
+            }
+
+            m_GameController.SetInputFillerValue("shaker", Mathf.RoundToInt(m_Shaking), m_Recipe.m_ShakeTime);
+            m_GameController.SetInputCounterValue("shaker", Mathf.RoundToInt(m_Shaking), m_Recipe.m_ShakeTime);
+
+            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 0) {
                 m_Step++;   //Player 2 send the order to Player 1
             }
-        } else if (m_Step == 3) {
+        } else if (m_Step == 1) {
             foreach (Topping topping in m_Recipe.m_Toppings) {
                 if (
                     (topping.m_ToppingName == "quinoa" && Input.GetButtonDown("Action1") == true) ||
@@ -108,20 +110,19 @@ public class Order : MonoBehaviour
                     if (m_InputsTopping[topping] == 0) {
                         m_InputsTopping[topping] = topping.m_NbInput;
                         m_ToppingsDone[topping]++;
+                        m_GameController.SetInputCounterValue(topping.m_ToppingName, m_ToppingsDone[topping], 1);
+
                         Debug.Log(m_ToppingsDone[topping]);
                     }
                 }
 
-                if (m_ToppingsDone[topping] > 1) {
-                    m_Status = "failed";
-                    m_Step = 4;
-                }
+                m_GameController.SetInputFillerValue(topping.m_ToppingName, topping.m_NbInput - m_InputsTopping[topping], topping.m_NbInput);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 3) {
+            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 1) {
                 m_Step++;   //Player 1 send the order to the customer
             }
-        } else if (m_Step == 4) {
+        } else if (m_Step == 2) {
             //results
         }
 
