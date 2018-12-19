@@ -20,7 +20,7 @@ public class UIIngredientController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        m_TextComponent = GetComponent<Text>();
+
     }
 
     // Update is called once per frame
