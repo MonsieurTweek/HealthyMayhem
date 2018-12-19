@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITextController : MonoBehaviour
+public class UIIngredientController : MonoBehaviour
 {
 
     public string m_QualifiedName;
 
-    private Text m_TextComponent;
+    public Image m_FillerComponent;
+    public Text m_TextComponent;
+    public Image m_ImageComponent;
+
     private Color m_Green = new Color(0f, 0.69f, 0.31f);
     private Color m_Red = new Color(1f, 0.28f, 0.28f);
     private Color m_Black = new Color(0.12f, 0.12f, 0.12f);

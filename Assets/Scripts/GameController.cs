@@ -15,13 +15,13 @@ public class GameController : MonoBehaviour
 
     // Texts Controllers
     [Header("----- Texts Controllers -----")]
-    public List<UITextController> m_TextsUI;
+    public List<UIIngredientController> m_IngredientsUI;
 
     // Start is called before the first frame update
     void Start()
     {
         // Init UI texts
-        foreach(UITextController textController in m_TextsUI)
+        foreach(UIIngredientController textController in m_IngredientsUI)
         {
             textController.ResetCounterToDefault();
         }
@@ -51,11 +51,11 @@ public class GameController : MonoBehaviour
 
     public void SetInputCounterValue(string key, int current, int target)
     {
-        foreach (UITextController textController in m_TextsUI)
+        foreach (UIIngredientController controller in m_IngredientsUI)
         {
-            if(textController.m_QualifiedName == key)
+            if(controller.m_QualifiedName == key)
             {
-                textController.SetCounter(current, target);
+                controller.SetCounter(current, target);
             }
         }
     }
