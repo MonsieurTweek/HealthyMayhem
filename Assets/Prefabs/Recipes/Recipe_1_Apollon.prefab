@@ -101,4 +101,6 @@ MonoBehaviour:
   - {fileID: 4731848977195186234, guid: 6f8eba59bc2edfc44965f6a93b34329a, type: 3}
   m_NbIngredient: 01000000020000000600000001000000
   m_ShakeTime: 9
+  m_Toppings:
+  - {fileID: 135096824517618665, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
   m_Sprite: {fileID: 0}

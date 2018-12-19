@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CustomerName: "L\xE9opold"
-  m_Timer: 15
+  m_Timer: 60
   m_Sprite: {fileID: 21300000, guid: 0e6a74c33ccc4af4898b9b39186e7f3c, type: 3}

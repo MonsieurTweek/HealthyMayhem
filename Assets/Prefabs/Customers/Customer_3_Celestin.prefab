@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CustomerName: Celestin
-  m_Timer: 26
+  m_Timer: 33
   m_Sprite: {fileID: 21300000, guid: 5069eb57629851f46b9e8b9a25ad476c, type: 3}

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CustomerName: Fernand
-  m_Timer: 38
+  m_Timer: 25
   m_Sprite: {fileID: 21300000, guid: 74c4ab2defd13b54fac95658c7573f93, type: 3}
