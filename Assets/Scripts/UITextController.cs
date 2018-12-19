@@ -15,7 +15,7 @@ public class UITextController : MonoBehaviour
     private Color m_Grey = new Color(0.65f, 0.65f, 0.65f);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_TextComponent = GetComponent<Text>();
     }

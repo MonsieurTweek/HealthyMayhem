@@ -10,7 +10,7 @@ public class Recipe : MonoBehaviour, ISerializationCallbackReceiver
     public List<int> m_NbIngredient;
     public Dictionary<Ingredient, int> m_Ingredients;
     public int m_ShakeTime;
-    public List<Topping> m_Topping;
+    public List<Topping> m_Toppings;
     public Sprite m_Sprite;
 
 
