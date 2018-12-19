@@ -21,9 +21,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         // Init UI texts
-        foreach(UIIngredientController textController in m_IngredientsUI)
+        foreach(UIIngredientController controller in m_IngredientsUI)
         {
-            textController.ResetCounterToDefault();
+            controller.ResetCounterToDefault();
         }
 
         GenerateOrder();
@@ -56,6 +56,17 @@ public class GameController : MonoBehaviour
             if(controller.m_QualifiedName == key)
             {
                 controller.SetCounter(current, target);
+            }
+        }
+    }
+
+    public void SetInputFillerValue(string key, int current, int max)
+    {
+        foreach (UIIngredientController controller in m_IngredientsUI)
+        {
+            if (controller.m_QualifiedName == key)
+            {
+                controller.SetFiller(current, max);
             }
         }
     }

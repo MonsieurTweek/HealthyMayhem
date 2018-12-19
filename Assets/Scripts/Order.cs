@@ -88,6 +88,8 @@ public class Order : MonoBehaviour
                     m_Status = "failed";
                     m_Step = 4;
                 }
+
+                m_GameController.SetInputFillerValue(ingredient.m_IngredientName, ingredient.m_NbInput - m_InputsIngredient[ingredient], ingredient.m_NbInput);
             }
 
             if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 2) {
