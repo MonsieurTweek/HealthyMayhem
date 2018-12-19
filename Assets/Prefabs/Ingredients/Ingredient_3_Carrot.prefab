@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Id: 3
   m_IngredientName: carrot
-  m_NbInput: 9
+  m_NbInput: 8

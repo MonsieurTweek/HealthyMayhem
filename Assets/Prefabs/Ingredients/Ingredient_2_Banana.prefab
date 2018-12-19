@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Id: 2
   m_IngredientName: banana
-  m_NbInput: 6
+  m_NbInput: 4

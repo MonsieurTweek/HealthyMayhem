@@ -43,7 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b264811020718468eea02a53219922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Customer: {fileID: 8089813228878772991, guid: 2bab5e98d2f66404dbd5230f0f76b8bb,
+  m_Customer: {fileID: 6974387017572506809, guid: 605f236251f7d5645a23c774e0f5f6c8,
     type: 3}
   m_Recipe: {fileID: 8361390902068021046, guid: 11183744013bf9f46a55e74e13fe61ae,
     type: 3}
+  m_Status: waiting
+  m_Step: 0
+  m_Shaking: 0
+  m_GameController: {fileID: 0}
+  m_HUD_Order_Customer: {fileID: 0}
+  m_HUD_Order_Recipe: {fileID: 0}

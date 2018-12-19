@@ -47,3 +47,9 @@ MonoBehaviour:
     type: 3}
   m_Recipe: {fileID: 2459440758438587179, guid: a028c828703fae948ae5c7715f951168,
     type: 3}
+  m_Status: waiting
+  m_Step: 0
+  m_Shaking: 0
+  m_GameController: {fileID: 0}
+  m_HUD_Order_Customer: {fileID: 0}
+  m_HUD_Order_Recipe: {fileID: 0}

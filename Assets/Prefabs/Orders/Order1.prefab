@@ -45,5 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Customer: {fileID: 4843776626780424720, guid: 87fbae2b813c5d541a057165ae892593,
     type: 3}
-  m_Recipe: {fileID: 8361390902068021046, guid: 11183744013bf9f46a55e74e13fe61ae,
+  m_Recipe: {fileID: 2459440758438587179, guid: a028c828703fae948ae5c7715f951168,
     type: 3}
+  m_Status: waiting
+  m_Step: 0
+  m_Shaking: 0
+  m_GameController: {fileID: 0}
+  m_HUD_Order_Customer: {fileID: 0}
+  m_HUD_Order_Recipe: {fileID: 0}
