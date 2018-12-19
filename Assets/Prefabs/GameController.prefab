@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2948841147827776337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2948841147827776339}
+  - component: {fileID: 2948841147827776336}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2948841147827776339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948841147827776337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2948841147827776336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948841147827776337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a71eaf457a3444a83252fb69cf3901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Orders:
+  - {fileID: 6626871503723065972, guid: ba80ba98c37681c4fb766ebc87fc5e22, type: 3}
+  - {fileID: 814614479740607505, guid: 384287ccb5a3e544fa993495bb8a41a2, type: 3}
+  - {fileID: 3702267774205007470, guid: 2141e590fd66e794ba27f0d6f2ad8080, type: 3}
+  - {fileID: 5948118044229376879, guid: 7200ba53ad33d124fbf06a17a6be610d, type: 3}
+  - {fileID: 2745297841609718298, guid: 3d3fdea07bf96844eb3e718ea2b3015a, type: 3}
+  - {fileID: 6494016430431935145, guid: 98ebdb9eb7a67534abee9c78e77ab28e, type: 3}
+  m_CurrentOrder: 0
+  m_Order_Recipe: {fileID: 0}
+  m_Order_Customer: {fileID: 0}
+  m_Apple_Count_Text: {fileID: 0}
+  m_Banana_Count_Text: {fileID: 0}
+  m_Carrot_Count_Text: {fileID: 0}
+  m_Orange_Count_Text: {fileID: 0}
+  m_Shaker_Count_Text: {fileID: 0}
+  m_Ingredients_Bell_Count_Text: {fileID: 0}
+  m_Quinoa_Count_Text: {fileID: 0}
+  m_Goji_Count_Text: {fileID: 0}
+  m_Mint_Count_Text: {fileID: 0}
+  m_Topping_Bell_Count_Text: {fileID: 0}
