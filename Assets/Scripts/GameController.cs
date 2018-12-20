@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 
     private float _currentTime = 0f;
     private float _startingTime;
+    private bool _timerAlertPlayed = false;
 
     // HUD
     [Header("----- HUD -----")]
@@ -37,10 +38,12 @@ public class GameController : MonoBehaviour
     // 3 - End game screen
     public int m_CurrentState;
 
+    private AudioManager _GameControllerAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        _GameControllerAudioManager = GetComponent<AudioManager>();
         m_CurrentState = 1;
 
         // Init UI texts
@@ -62,6 +65,13 @@ public class GameController : MonoBehaviour
                 _currentTime -= 1 * Time.deltaTime;
                 m_CountdownText.text = _currentTime.ToString("0");
 
+                if (_currentTime <= 10)
+                {
+                    // Play Healthy_Mayhem_Timer_Alert_SFX
+                    _GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_TIMER_ALERT_SFX);
+                    _timerAlertPlayed = true;
+                }
+
                 if (_currentTime <= 0)
                 {
                     DeliverOrderToCustomer(_currentOrderInstance.m_Recipe, false, 0f);
@@ -76,6 +86,10 @@ public class GameController : MonoBehaviour
                     //Start next customer
                     Debug.Log(m_CurrentOrder);
                     Debug.Log(m_Orders.Count);
+
+                    // Play Healthy_Mayhem_CounterBell_SFX
+                    _GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
+
                     if (m_CurrentOrder < m_Orders.Count)
                     {
                         DestroyOrder(_currentOrderInstance);
@@ -98,9 +112,13 @@ public class GameController : MonoBehaviour
             m_ResultScreenInstance = Instantiate(m_ResultScreenSuccess);
             m_ResultScreenInstance.UpdateImage(recipe.m_Sprite);
             m_ResultScreenInstance.UpdateText(recipe.m_Price);
+            // Play Healthy_Mayhem_Money_SFX
+            _GameControllerAudioManager.PlayVoiceSFX(AudioManager.HEALTHY_MAYHEM_MONEY_SFX);
         } else
         {
             m_ResultScreenInstance = Instantiate(m_ResultScreenFail);
+            // Play Healthy_Mayhem_0$_SFX
+            _GameControllerAudioManager.PlayVoiceSFX(AudioManager.HEALTHY_MAYHEM_NO_MONEY_SFX);
         }
 
         m_ResultScreenInstance.gameObject.SetActive(true);
@@ -133,6 +151,9 @@ public class GameController : MonoBehaviour
 
         // Reset timer
         _currentTime = _currentOrderInstance.m_Customer.m_Timer;
+        _timerAlertPlayed = false;
+        // Play Healthy_Mayhem_Active_Timer_SFX
+        _GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_TIMER_START_SFX);
 
     }
 

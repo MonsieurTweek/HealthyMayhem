@@ -23,15 +23,22 @@ public class Order : MonoBehaviour
 
     [HideInInspector]
     public GameController m_GameController;
+    [HideInInspector]
+    public AudioManager m_GameControllerAudioManager;
 
     [HideInInspector]
     public GameObject m_HUD_Order_Customer;
     [HideInInspector]
     public GameObject m_HUD_Order_Recipe;
 
+    private int _previousShakingTime;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        m_GameControllerAudioManager = m_GameController.GetComponent<AudioManager>();
+
         m_CustomerClone = Instantiate(m_Customer);
         m_RecipeClone = Instantiate(m_Recipe);
 
@@ -57,6 +64,8 @@ public class Order : MonoBehaviour
             m_GameController.SetInputCounterValue(topping.m_ToppingName, 0, 1);
         }
 
+        _previousShakingTime = -1;
+
         m_GameController.m_CurrentState = 1;
     }
 
@@ -76,11 +85,17 @@ public class Order : MonoBehaviour
                 ) {
                     m_InputsIngredient[ingredient]--;
 
+                    // Play Healthy_Mayhem_Touch_SFX
+                    m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_TOUCH_SFX);
+
                     Debug.Log(m_InputsIngredient[ingredient]);
 
                     if (m_InputsIngredient[ingredient] == 0) {
                         m_InputsIngredient[ingredient] = ingredient.m_NbInput;
                         m_IngredientsDone[ingredient]++;
+
+                        // Play Healthy_Mayhem_Valid_SFX
+                        m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_VALID_SFX);
 
                         Debug.Log(m_IngredientsDone[ingredient]);
                     }
@@ -92,12 +107,24 @@ public class Order : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Mouse0) == true) {
                 m_Shaking += Time.deltaTime;
+
+                if(Mathf.FloorToInt(m_Shaking) > _previousShakingTime)
+                {
+                    _previousShakingTime = Mathf.FloorToInt(m_Shaking);
+                    // Play Healthy_Mayhem_Shaker_SFX
+                    m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_SHAKER_SFX);
+                    Debug.Log(_previousShakingTime);
+                }
+
+                m_GameController.SetInputFillerValue("shaker", Mathf.FloorToInt(m_Shaking), m_Recipe.m_ShakeTime);
+                m_GameController.SetInputCounterValue("shaker", Mathf.FloorToInt(m_Shaking), m_Recipe.m_ShakeTime);
             }
 
-            m_GameController.SetInputFillerValue("shaker", Mathf.RoundToInt(m_Shaking), m_Recipe.m_ShakeTime);
-            m_GameController.SetInputCounterValue("shaker", Mathf.RoundToInt(m_Shaking), m_Recipe.m_ShakeTime);
+            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 0)
+            {
+                // Play Healthy_Mayhem_CounterBell_SFX
+                m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
 
-            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 0) {
                 m_Step++;   //Player 2 send the order to Player 1
             }
         } else if (m_Step == 1) {
@@ -108,11 +135,18 @@ public class Order : MonoBehaviour
                     (topping.m_ToppingName == "mint" && Input.GetKeyDown(KeyCode.LeftArrow) == true)
                  ) {
                     m_InputsTopping[topping]--;
+
+                    // Play Healthy_Mayhem_Touch_SFX
+                    m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_TOUCH_SFX);
+
                     Debug.Log(m_InputsTopping[topping]);
 
                     if (m_InputsTopping[topping] == 0) {
                         m_InputsTopping[topping] = topping.m_NbInput;
                         m_ToppingsDone[topping]++;
+
+                        // Play Healthy_Mayhem_Valid_SFX
+                        m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_VALID_SFX);
 
                         Debug.Log(m_ToppingsDone[topping]);
                     }
@@ -122,7 +156,11 @@ public class Order : MonoBehaviour
                 m_GameController.SetInputCounterValue(topping.m_ToppingName, m_ToppingsDone[topping], 1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 1) {
+            if (Input.GetKeyDown(KeyCode.Space) == true && m_Step == 1)
+            {
+                // Play Healthy_Mayhem_CounterBell_SFX
+                m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
+
                 m_Step++;   //Player 1 send the order to the customer
             }
         } else if (m_Step == 2) {

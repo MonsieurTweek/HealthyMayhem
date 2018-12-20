@@ -11,7 +11,8 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        AudioSource source = GetComponent<AudioSource>();
+        source.PlayDelayed(Random.Range(2f, 4f));
     }
 
     // Update is called once per frame

@@ -415,7 +415,7 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2031300941, guid: 0e6f9d8843feb4f47809f3968482978a, type: 3}
       propertyPath: m_Text
-      value: 999
+      value: 99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6f9d8843feb4f47809f3968482978a, type: 3}
@@ -660,17 +660,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
-      propertyPath: m_Orders.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
       propertyPath: m_CanvasIngredients
       value: 
       objectReference: {fileID: 2119787379}
     - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
-      propertyPath: m_Timer
+      propertyPath: m_CanvasTimer
       value: 
       objectReference: {fileID: 1172341134}
     - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
@@ -683,6 +678,11 @@ PrefabInstance:
       propertyPath: m_Order_Customer
       value: 
       objectReference: {fileID: 1767174939}
+    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
+        type: 3}
+      propertyPath: m_CountdownText
+      value: 
+      objectReference: {fileID: 2031300941}
     - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
       propertyPath: m_IngredientsUI.Array.data[0]
@@ -733,28 +733,6 @@ PrefabInstance:
       propertyPath: m_IngredientsUI.Array.data[9]
       value: 
       objectReference: {fileID: 1504552490888990540}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_CountdownText
-      value: 
-      objectReference: {fileID: 2031300941}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_CanvasTimer
-      value: 
-      objectReference: {fileID: 1172341134}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_Orders.Array.data[6]
-      value: 
-      objectReference: {fileID: 5015389208691353792, guid: ef8120152a2b3a6459239f93c0ca4bea,
-        type: 3}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_Orders.Array.data[7]
-      value: 
-      objectReference: {fileID: 8238528817133282444, guid: c699c1e7ced4a8a439972353c9b589b7,
-        type: 3}
     - target: {fileID: 6697724987722313939, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
       propertyPath: countdownText
