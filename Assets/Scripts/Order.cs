@@ -103,9 +103,9 @@ public class Order : MonoBehaviour
         } else if (m_Step == 1) {
             foreach (Topping topping in m_Recipe.m_Toppings) {
                 if (
-                    (topping.m_ToppingName == "quinoa" && Input.GetButtonDown("Action1") == true) ||
-                    (topping.m_ToppingName == "goji" && Input.GetButtonDown("Action2") == true) ||
-                    (topping.m_ToppingName == "mint" && Input.GetButtonDown("Action3") == true)
+                    (topping.m_ToppingName == "quinoa" && Input.GetKeyDown(KeyCode.UpArrow) == true) ||
+                    (topping.m_ToppingName == "goji" && Input.GetKeyDown(KeyCode.RightArrow) == true) ||
+                    (topping.m_ToppingName == "mint" && Input.GetKeyDown(KeyCode.LeftArrow) == true)
                  ) {
                     m_InputsTopping[topping]--;
                     Debug.Log(m_InputsTopping[topping]);

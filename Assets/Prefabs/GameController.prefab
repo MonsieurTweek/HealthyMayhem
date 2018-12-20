@@ -51,12 +51,16 @@ MonoBehaviour:
   - {fileID: 5948118044229376879, guid: 7200ba53ad33d124fbf06a17a6be610d, type: 3}
   - {fileID: 2745297841609718298, guid: 3d3fdea07bf96844eb3e718ea2b3015a, type: 3}
   - {fileID: 6494016430431935145, guid: 98ebdb9eb7a67534abee9c78e77ab28e, type: 3}
+  - {fileID: 5015389208691353792, guid: ef8120152a2b3a6459239f93c0ca4bea, type: 3}
+  - {fileID: 8238528817133282444, guid: c699c1e7ced4a8a439972353c9b589b7, type: 3}
   m_CurrentOrder: 0
   m_Results: []
+  _currentOrderInstance: {fileID: 0}
   m_CanvasIngredients: {fileID: 0}
-  m_Timer: {fileID: 0}
+  m_CanvasTimer: {fileID: 0}
   m_Order_Recipe: {fileID: 0}
   m_Order_Customer: {fileID: 0}
+  m_CountdownText: {fileID: 0}
   m_IngredientsUI:
   - {fileID: 0}
   - {fileID: 0}

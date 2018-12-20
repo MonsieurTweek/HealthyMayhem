@@ -74,7 +74,9 @@ public class GameController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) == true)
                 {
                     //Start next customer
-                    if ((m_CurrentOrder + 1) < m_Orders.Count)
+                    Debug.Log(m_CurrentOrder);
+                    Debug.Log(m_Orders.Count);
+                    if (m_CurrentOrder < m_Orders.Count)
                     {
                         DestroyOrder(_currentOrderInstance);
                         GenerateOrder();
