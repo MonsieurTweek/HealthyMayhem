@@ -105,4 +105,4 @@ MonoBehaviour:
   - {fileID: 135096824517618665, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
   - {fileID: 8649803036544326686, guid: 6f8eba59bc2edfc44965f6a93b34329a, type: 3}
   - {fileID: 1504078895306970357, guid: 385d819969b2d634caa7a96a5bab00da, type: 3}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f519c2e91b082dd4381096ac4f8b5626, type: 3}

@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Toppings:
   - {fileID: 8649803036544326686, guid: 6f8eba59bc2edfc44965f6a93b34329a, type: 3}
   - {fileID: 135096824517618665, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a7a8e9d648927224f8dc64677d4f01da, type: 3}
