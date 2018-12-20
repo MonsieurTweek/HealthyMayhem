@@ -43,10 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b264811020718468eea02a53219922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Customer: {fileID: 6628501156055445961, guid: 78373590849bbaa44b5f22f9311a63d2,
+  m_Customer: {fileID: 2058989905370625635, guid: 38227d4d3f5fa2046a8d24348d0d67e5,
     type: 3}
+  m_CustomerClone: {fileID: 0}
   m_Recipe: {fileID: 8036226536806312256, guid: 06d62b94b39fa9d409f6ac0054d44fc0,
     type: 3}
+  m_RecipeClone: {fileID: 0}
   m_Status: waiting
   m_Step: 0
   m_Shaking: 0
