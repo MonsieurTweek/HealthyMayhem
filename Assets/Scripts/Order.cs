@@ -17,7 +17,9 @@ public class Order : MonoBehaviour
     public Dictionary<Topping, int> m_InputsTopping = new Dictionary<Topping, int>();
     public string m_Status = "waiting";
     public int m_Step = 0;
+
     public float m_Shaking = 0;
+    public RecipeAsset recipe = null;
 
     [HideInInspector]
     public GameController m_GameController;
