@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource m_AudioSourceMusic;
     public AudioSource m_AudioSourceInputSFX;
     public AudioSource m_AudioSourceVoiceSFX;
+    public AudioSource m_AudioSourceWarningSFX;
 
     // Clips
     // Inputs feedbacks
@@ -94,12 +95,21 @@ public class AudioManager : MonoBehaviour
             case HEALTHY_MAYHEM_TIMER_START_SFX:
                 m_AudioSourceInputSFX.clip = m_ClipTimerStart;
                 break;
-            case HEALTHY_MAYHEM_TIMER_ALERT_SFX:
-                m_AudioSourceInputSFX.clip = m_ClipTimerAlert;
-                break;
         }
 
         m_AudioSourceInputSFX.Play();
+    }
+
+    public void PlayWarningSFX(int key)
+    {
+        switch(key)
+        {
+            case HEALTHY_MAYHEM_TIMER_ALERT_SFX:
+                m_AudioSourceWarningSFX.clip = m_ClipTimerAlert;
+                break;
+        }
+
+        m_AudioSourceWarningSFX.Play();
     }
 
     public void PlayVoiceSFX(int key)

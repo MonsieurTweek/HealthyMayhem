@@ -691,6 +691,11 @@ PrefabInstance:
       objectReference: {fileID: 2031300941}
     - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
+      propertyPath: m_rootHUD
+      value: 
+      objectReference: {fileID: 1781961801}
+    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
+        type: 3}
       propertyPath: m_IngredientsUI.Array.data[0]
       value: 
       objectReference: {fileID: 1045851435}
@@ -739,17 +744,6 @@ PrefabInstance:
       propertyPath: m_IngredientsUI.Array.data[9]
       value: 
       objectReference: {fileID: 1504552490888990540}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_rootHUD
-      value: 
-      objectReference: {fileID: 1781961801}
-    - target: {fileID: 2948841147827776336, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
-        type: 3}
-      propertyPath: m_EndScreen
-      value: 
-      objectReference: {fileID: 2473020437356410449, guid: bf35b5c301aaf8044b1e56190cfded56,
-        type: 3}
     - target: {fileID: 6697724987722313939, guid: a24873d8bdab71f42b55e9a9fbe0abf0,
         type: 3}
       propertyPath: countdownText

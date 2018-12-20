@@ -76,10 +76,10 @@ public class GameController : MonoBehaviour
                 _currentTime -= 1 * Time.deltaTime;
                 m_CountdownText.text = _currentTime.ToString("0");
 
-                if (_currentTime <= 10)
+                if (_currentTime <= 10 && _timerAlertPlayed == false)
                 {
                     // Play Healthy_Mayhem_Timer_Alert_SFX
-                    _GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_TIMER_ALERT_SFX);
+                    _GameControllerAudioManager.PlayWarningSFX(AudioManager.HEALTHY_MAYHEM_TIMER_ALERT_SFX);
                     _timerAlertPlayed = true;
                 }
 
