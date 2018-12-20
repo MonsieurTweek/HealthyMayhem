@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Id: 1
   m_IngredientName: apple
-  m_NbInput: 4
+  m_NbInput: 5

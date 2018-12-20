@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CustomerName: Celestin
-  m_Timer: 33
+  m_Timer: 45
   m_Sprite: {fileID: 21300000, guid: 41ac1c5d9af582043ac3a9f994261334, type: 3}
 --- !u!82 &4762900911040478465
 AudioSource:
