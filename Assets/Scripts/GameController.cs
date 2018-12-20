@@ -23,10 +23,7 @@ public class GameController : MonoBehaviour
     public GameObject m_Order_Recipe;
     public GameObject m_Order_Customer;
     public Text m_CountdownText;
-    public GameObject m_Panel;
-    public GameObject m_CountdownPanel;
-    public GameObject m_IngredientsPanel;
-    public GameObject m_SmoothieBubble;
+    public GameObject m_rootHUD;
 
 
     // Texts Controllers
@@ -72,28 +69,6 @@ public class GameController : MonoBehaviour
     void Update()
     {        
 
-        if(Input.GetKeyDown(KeyCode.F3) == true) {
-            m_EndScreenInstance = Instantiate(m_EndScreen);
-            m_EndScreenInstance.gameObject.SetActive(true);
-            m_CanvasIngredients.gameObject.SetActive(false);
-            m_CanvasTimer.gameObject.SetActive(false);
-            m_Panel.gameObject.SetActive(false);
-            m_CountdownPanel.gameObject.SetActive(false);
-            m_IngredientsPanel.gameObject.SetActive(false);
-            m_SmoothieBubble.gameObject.SetActive(false);
-            m_Order_Recipe.gameObject.SetActive(false);
-            m_Order_Customer.gameObject.SetActive(false);
-        } else if(Input.GetKeyDown(KeyCode.F4) == true) {
-            Destroy(m_EndScreenInstance.gameObject);
-            m_CanvasIngredients.gameObject.SetActive(true);
-            m_CanvasTimer.gameObject.SetActive(true);
-            m_Panel.gameObject.SetActive(true);
-            m_CountdownPanel.gameObject.SetActive(true);
-            m_IngredientsPanel.gameObject.SetActive(true);
-            m_SmoothieBubble.gameObject.SetActive(true);
-            m_Order_Recipe.gameObject.SetActive(true);
-            m_Order_Customer.gameObject.SetActive(true);
-        }
         switch(m_CurrentState)
         {
             case 1 :
@@ -125,18 +100,16 @@ public class GameController : MonoBehaviour
 
                     // Play Healthy_Mayhem_CounterBell_SFX
                     _GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
+                    DestroyOrder(_currentOrderInstance);
 
                     if (m_CurrentOrder < m_Orders.Count)
                     {
-                        DestroyOrder(_currentOrderInstance);
                         GenerateOrder();
                         HideResultScreen();
                     }
                     else
-                    {
-                        DestroyOrder(_currentOrderInstance);
+                    {                        
                         ShowEndScreen(m_Results);
-
                         m_CurrentState = 3;
                     }
                 }
@@ -254,26 +227,19 @@ public class GameController : MonoBehaviour
     public void ShowHud() {
         m_CanvasIngredients.gameObject.SetActive(true);
         m_CanvasTimer.gameObject.SetActive(true);
-        m_Panel.gameObject.SetActive(true);
-        m_CountdownPanel.gameObject.SetActive(true);
-        m_IngredientsPanel.gameObject.SetActive(true);
-        m_SmoothieBubble.gameObject.SetActive(true);
     }
 
     public void HideHud() {
         m_CanvasIngredients.gameObject.SetActive(false);
         m_CanvasTimer.gameObject.SetActive(false);
-        m_Panel.gameObject.SetActive(false);
-        m_CountdownPanel.gameObject.SetActive(false);
-        m_IngredientsPanel.gameObject.SetActive(false);
-        m_SmoothieBubble.gameObject.SetActive(false);
+        m_rootHUD.gameObject.SetActive(false);
     }
 
     public void ShowEndScreen(List<float> results) {
 
         string resultsText = "";
 
-        float total = 0;
+        float total = 0f;
         foreach(float result in results) {
             if(result == 0) {
                 resultsText = resultsText + "<color=#ff4747ff>";
@@ -295,18 +261,12 @@ public class GameController : MonoBehaviour
 
         m_EndScreenInstance = Instantiate(m_EndScreen);
         m_EndScreenInstance.UpdateText(resultsText, totalText);
+        m_EndScreenInstance.UpdateImage(total);
 
         m_EndScreenInstance.gameObject.SetActive(true);
         HideHud();
-        HideResultScreen();
+        Destroy(m_ResultScreenInstance.gameObject);
         m_Order_Recipe.gameObject.SetActive(false);
         m_Order_Customer.gameObject.SetActive(false);
-    }
-
-    public void HideEndScreen() {
-        Destroy(m_EndScreenInstance.gameObject);
-        ShowHud();
-        m_Order_Recipe.gameObject.SetActive(true);
-        m_Order_Customer.gameObject.SetActive(true);
     }
 }
