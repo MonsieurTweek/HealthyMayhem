@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Healthy.Enums;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -21,6 +23,11 @@ public class GameController : MonoBehaviour
     public GameObject m_Order_Recipe;
     public GameObject m_Order_Customer;
     public Text m_CountdownText;
+    public GameObject m_Panel;
+    public GameObject m_CountdownPanel;
+    public GameObject m_IngredientsPanel;
+    public GameObject m_SmoothieBubble;
+
 
     // Texts Controllers
     [Header("----- Texts Controllers -----")]
@@ -31,6 +38,12 @@ public class GameController : MonoBehaviour
     public UIResultScreenController m_ResultScreenSuccess;
     public UIResultScreenController m_ResultScreenFail;
     public UIResultScreenController m_ResultScreenInstance;
+
+    //End screen
+    [Header("----- End Screen -----")]
+    public UIEndScreenController m_EndScreen;
+    public UIEndScreenController m_EndScreenInstance;
+
     // States
     // 0 - Start Screen
     // 1 - Customer waiting
@@ -58,6 +71,29 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
+
+        if(Input.GetKeyDown(KeyCode.F3) == true) {
+            m_EndScreenInstance = Instantiate(m_EndScreen);
+            m_EndScreenInstance.gameObject.SetActive(true);
+            m_CanvasIngredients.gameObject.SetActive(false);
+            m_CanvasTimer.gameObject.SetActive(false);
+            m_Panel.gameObject.SetActive(false);
+            m_CountdownPanel.gameObject.SetActive(false);
+            m_IngredientsPanel.gameObject.SetActive(false);
+            m_SmoothieBubble.gameObject.SetActive(false);
+            m_Order_Recipe.gameObject.SetActive(false);
+            m_Order_Customer.gameObject.SetActive(false);
+        } else if(Input.GetKeyDown(KeyCode.F4) == true) {
+            Destroy(m_EndScreenInstance.gameObject);
+            m_CanvasIngredients.gameObject.SetActive(true);
+            m_CanvasTimer.gameObject.SetActive(true);
+            m_Panel.gameObject.SetActive(true);
+            m_CountdownPanel.gameObject.SetActive(true);
+            m_IngredientsPanel.gameObject.SetActive(true);
+            m_SmoothieBubble.gameObject.SetActive(true);
+            m_Order_Recipe.gameObject.SetActive(true);
+            m_Order_Customer.gameObject.SetActive(true);
+        }
         switch(m_CurrentState)
         {
             case 1 :
@@ -98,8 +134,18 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        //End of day
+                        DestroyOrder(_currentOrderInstance);
+                        ShowEndScreen(m_Results);
+
+                        m_CurrentState = 3;
                     }
+                }
+                break;
+
+            case 3:
+
+                if (Input.GetKeyDown(KeyCode.Space) == true) {
+                    SceneManager.LoadScene((int)SceneEnum.START);
                 }
                 break;
         }
@@ -107,8 +153,7 @@ public class GameController : MonoBehaviour
 
     public void ShowResultScreen(bool success, Recipe recipe)
     {
-        if(success == true)
-        {
+        if (success == true) {
             m_ResultScreenInstance = Instantiate(m_ResultScreenSuccess);
             m_ResultScreenInstance.UpdateImage(recipe.m_Sprite);
             m_ResultScreenInstance.UpdateText(recipe.m_Price);
@@ -204,5 +249,64 @@ public class GameController : MonoBehaviour
         Debug.Log("DeliverOrderToCustomer");
         m_Results.Add(earning);
         ShowResultScreen(isSuccess, recipe);
+    }
+
+    public void ShowHud() {
+        m_CanvasIngredients.gameObject.SetActive(true);
+        m_CanvasTimer.gameObject.SetActive(true);
+        m_Panel.gameObject.SetActive(true);
+        m_CountdownPanel.gameObject.SetActive(true);
+        m_IngredientsPanel.gameObject.SetActive(true);
+        m_SmoothieBubble.gameObject.SetActive(true);
+    }
+
+    public void HideHud() {
+        m_CanvasIngredients.gameObject.SetActive(false);
+        m_CanvasTimer.gameObject.SetActive(false);
+        m_Panel.gameObject.SetActive(false);
+        m_CountdownPanel.gameObject.SetActive(false);
+        m_IngredientsPanel.gameObject.SetActive(false);
+        m_SmoothieBubble.gameObject.SetActive(false);
+    }
+
+    public void ShowEndScreen(List<float> results) {
+
+        string resultsText = "";
+
+        float total = 0;
+        foreach(float result in results) {
+            if(result == 0) {
+                resultsText = resultsText + "<color=#ff4747ff>";
+            } else {
+                resultsText = resultsText + "<color=#00b050ff>";
+            }
+            resultsText = resultsText + result.ToString("F") + "€</color>\n";
+            total += result;
+        }
+
+        string totalText = "";
+        if(total == 0) {
+            totalText = "<color=#ff4747ff>";
+        } else {
+            totalText = "<color=#00b050ff>";
+        }
+
+        totalText = totalText + total.ToString("F") + "€</color>";
+
+        m_EndScreenInstance = Instantiate(m_EndScreen);
+        m_EndScreenInstance.UpdateText(resultsText, totalText);
+
+        m_EndScreenInstance.gameObject.SetActive(true);
+        HideHud();
+        HideResultScreen();
+        m_Order_Recipe.gameObject.SetActive(false);
+        m_Order_Customer.gameObject.SetActive(false);
+    }
+
+    public void HideEndScreen() {
+        Destroy(m_EndScreenInstance.gameObject);
+        ShowHud();
+        m_Order_Recipe.gameObject.SetActive(true);
+        m_Order_Customer.gameObject.SetActive(true);
     }
 }
