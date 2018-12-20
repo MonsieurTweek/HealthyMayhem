@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2948841147827776339}
   - component: {fileID: 2948841147827776336}
+  - component: {fileID: 6697724987722313939}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -51,15 +52,38 @@ MonoBehaviour:
   - {fileID: 2745297841609718298, guid: 3d3fdea07bf96844eb3e718ea2b3015a, type: 3}
   - {fileID: 6494016430431935145, guid: 98ebdb9eb7a67534abee9c78e77ab28e, type: 3}
   m_CurrentOrder: 0
+  m_Results: []
+  m_CanvasIngredients: {fileID: 0}
+  m_Timer: {fileID: 0}
   m_Order_Recipe: {fileID: 0}
   m_Order_Customer: {fileID: 0}
-  m_Apple_Count_Text: {fileID: 0}
-  m_Banana_Count_Text: {fileID: 0}
-  m_Carrot_Count_Text: {fileID: 0}
-  m_Orange_Count_Text: {fileID: 0}
-  m_Shaker_Count_Text: {fileID: 0}
-  m_Ingredients_Bell_Count_Text: {fileID: 0}
-  m_Quinoa_Count_Text: {fileID: 0}
-  m_Goji_Count_Text: {fileID: 0}
-  m_Mint_Count_Text: {fileID: 0}
-  m_Topping_Bell_Count_Text: {fileID: 0}
+  m_IngredientsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_ResultScreenSuccess: {fileID: 1754926898248330978, guid: 68f5911c0048fec42af904bd6055c03c,
+    type: 3}
+  m_ResultScreenFail: {fileID: 3138954346074972874, guid: b6519aa750ba0b0418719635c16dd543,
+    type: 3}
+  m_ResultScreenInstance: {fileID: 0}
+  m_CurrentState: 0
+--- !u!114 &6697724987722313939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948841147827776337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0555ade96f0674797d8559078771ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownText: {fileID: 0}

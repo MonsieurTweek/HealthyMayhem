@@ -148,24 +148,12 @@ public class Order : MonoBehaviour
                 m_InputsTopping[topping] = 0;
             }
 
-            if(m_Status == "failed" && m_GameController.m_CurrentState == 1) {
-                m_GameController.m_Results.Add(0);
-                m_GameController.ShowResultScreen(false, m_Recipe);
-            } else if(m_GameController.m_CurrentState == 1) {
-                m_GameController.m_Results.Add(m_Recipe.m_Price);
-                m_GameController.ShowResultScreen(true, m_Recipe);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) == true) {
-                m_Step = 0;   //Start next customer
-                if((m_GameController.m_CurrentOrder + 1) < m_GameController.m_Orders.Count) {
-                    m_GameController.DestroyOrder(this);
-                    m_GameController.GenerateOrder();
-                    m_GameController.HideResultScreen();
-                } else {
-                    //End of day
-                }
-            }
+            // End of the order
+            // It's a fail
+            bool isSuccess = (m_Status != "failed");
+            float earning = (m_Status == "failed") ? 0f : m_Recipe.m_Price;
+            m_GameController.DeliverOrderToCustomer(m_Recipe, isSuccess, earning);
+            m_Step = 3;
         }
     }
 }

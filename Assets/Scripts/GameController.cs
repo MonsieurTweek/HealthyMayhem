@@ -8,12 +8,18 @@ public class GameController : MonoBehaviour
     public List<Order> m_Orders;
     public int m_CurrentOrder = 0;
     public List<float> m_Results;
+    public Order _currentOrderInstance;
+
+    private float _currentTime = 0f;
+    private float _startingTime;
 
     // HUD
     [Header("----- HUD -----")]
     public Canvas m_CanvasIngredients;
+    public Canvas m_CanvasTimer;
     public GameObject m_Order_Recipe;
     public GameObject m_Order_Customer;
+    public Text m_CountdownText;
 
     // Texts Controllers
     [Header("----- Texts Controllers -----")]
@@ -52,19 +58,32 @@ public class GameController : MonoBehaviour
         switch(m_CurrentState)
         {
             case 1 :
-                if(Input.GetKeyDown(KeyCode.F1))
+                // Update timer
+                _currentTime -= 1 * Time.deltaTime;
+                m_CountdownText.text = _currentTime.ToString("0");
+
+                if (_currentTime <= 0)
                 {
-                    ShowResultScreen(true, m_Orders[m_CurrentOrder].m_Recipe);
-                } else if(Input.GetKeyDown(KeyCode.F2))
-                {
-                    ShowResultScreen(false, m_Orders[m_CurrentOrder].m_Recipe);
+                    DeliverOrderToCustomer(_currentOrderInstance.m_Recipe, false, 0f);
                 }
+
                 break;
 
-            case 2 :
-                if(Input.GetKeyDown(KeyCode.F5))
+            case 2:
+
+                if (Input.GetKeyDown(KeyCode.Space) == true)
                 {
-                    HideResultScreen();
+                    //Start next customer
+                    if ((m_CurrentOrder + 1) < m_Orders.Count)
+                    {
+                        DestroyOrder(_currentOrderInstance);
+                        GenerateOrder();
+                        HideResultScreen();
+                    }
+                    else
+                    {
+                        //End of day
+                    }
                 }
                 break;
         }
@@ -84,6 +103,7 @@ public class GameController : MonoBehaviour
 
         m_ResultScreenInstance.gameObject.SetActive(true);
         m_CanvasIngredients.gameObject.SetActive(false);
+        m_CanvasTimer.gameObject.SetActive(false);
         m_CurrentState = 2;
     }
 
@@ -91,6 +111,7 @@ public class GameController : MonoBehaviour
     {
         Destroy(m_ResultScreenInstance.gameObject);
         m_CanvasIngredients.gameObject.SetActive(true);
+        m_CanvasTimer.gameObject.SetActive(true);
         m_CurrentState = 1;
     }
 
@@ -98,15 +119,18 @@ public class GameController : MonoBehaviour
     {
         ResetCounter();
         ResetInputFiller();
-        Order newOrder = Instantiate(m_Orders[m_CurrentOrder]);
+        _currentOrderInstance = Instantiate(m_Orders[m_CurrentOrder]);
         m_CurrentOrder++;
 
         // Game Controller
-        newOrder.m_GameController = this;
+        _currentOrderInstance.m_GameController = this;
 
         // HUD Position
-        m_Order_Recipe.GetComponent<SpriteRenderer>().sprite = newOrder.m_Recipe.m_Sprite;
-        m_Order_Customer.GetComponent<SpriteRenderer>().sprite = newOrder.m_Customer.m_Sprite;
+        m_Order_Recipe.GetComponent<SpriteRenderer>().sprite = _currentOrderInstance.m_Recipe.m_Sprite;
+        m_Order_Customer.GetComponent<SpriteRenderer>().sprite = _currentOrderInstance.m_Customer.m_Sprite;
+
+        // Reset timer
+        _currentTime = _currentOrderInstance.m_Customer.m_Timer;
 
     }
 
@@ -150,5 +174,12 @@ public class GameController : MonoBehaviour
         Destroy(order.gameObject);
         //Debug.Log(order.m_Recipe);
         //Debug.Log(order.m_Customer);
+    }
+
+    public void DeliverOrderToCustomer(Recipe recipe, bool isSuccess, float earning)
+    {
+        Debug.Log("DeliverOrderToCustomer");
+        m_Results.Add(earning);
+        ShowResultScreen(isSuccess, recipe);
     }
 }
