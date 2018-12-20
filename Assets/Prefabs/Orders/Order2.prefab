@@ -45,8 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Customer: {fileID: 6974387017572506809, guid: 605f236251f7d5645a23c774e0f5f6c8,
     type: 3}
-  m_Recipe: {fileID: 8361390902068021046, guid: 11183744013bf9f46a55e74e13fe61ae,
+  m_CustomerClone: {fileID: 0}
+  m_Recipe: {fileID: 4566402911212380467, guid: 75e3364f98167b34e98699a32e902aa1,
     type: 3}
+  m_RecipeClone: {fileID: 0}
   m_Status: waiting
   m_Step: 0
   m_Shaking: 0
