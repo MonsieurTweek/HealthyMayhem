@@ -97,7 +97,7 @@ MonoBehaviour:
   m_IngredientList:
   - {fileID: 3887581574736415889, guid: 88d4d573b90adc04c8ea1c96d458a2e6, type: 3}
   - {fileID: 7733158120902699835, guid: 829082eb66452ce47af41615a1609722, type: 3}
-  - {fileID: 409922277494297172, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
-  m_NbIngredient: 060000000300000001000000
+  m_NbIngredient: 0600000003000000
   m_ShakeTime: 5
+  m_Toppings: []
   m_Sprite: {fileID: 0}

@@ -97,10 +97,9 @@ MonoBehaviour:
   m_IngredientList:
   - {fileID: 3887581574736415889, guid: 88d4d573b90adc04c8ea1c96d458a2e6, type: 3}
   - {fileID: 7733158120902699835, guid: 829082eb66452ce47af41615a1609722, type: 3}
-  - {fileID: 7981275666908594646, guid: f96ac7958e265024fad9aee2d0b9707e, type: 3}
-  - {fileID: 4731848977195186234, guid: 6f8eba59bc2edfc44965f6a93b34329a, type: 3}
-  m_NbIngredient: 01000000020000000600000001000000
-  m_ShakeTime: 9
+  - {fileID: 5562254238725921444, guid: 5d12dc4715689ea4b90a02a9f834264a, type: 3}
+  m_NbIngredient: 010000000100000001000000
+  m_ShakeTime: 2
   m_Toppings:
-  - {fileID: 135096824517618665, guid: 596c15b17378e7a42b769e9b60179b0c, type: 3}
+  - {fileID: 1504078895306970357, guid: 385d819969b2d634caa7a96a5bab00da, type: 3}
   m_Sprite: {fileID: 0}
