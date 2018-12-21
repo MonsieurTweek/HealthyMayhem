@@ -48,9 +48,9 @@ public class Order : MonoBehaviour
         {
             m_GameController.SetInputCounterValue(element.Key.m_IngredientName, 0, element.Value);
         }
-        m_GameController.SetInputCounterValue("ingredient_bell", 0, 1);
+        //m_GameController.SetInputCounterValue("ingredients-bell", 0, 1);
         m_GameController.SetInputCounterValue("shaker", 0, m_Recipe.m_ShakeTime);
-        m_GameController.SetInputCounterValue("topping_bell", 0, 1);
+        //m_GameController.SetInputCounterValue("toppings-bell", 0, 1);
 
         foreach (var ingredient in m_Recipe.m_Ingredients) {
             m_IngredientsDone.Add(ingredient.Key, 0);
@@ -75,6 +75,7 @@ public class Order : MonoBehaviour
         Ingredient ingredient;
 
        if (m_Step == 0) {
+            m_GameController.SetInputCounterValue("ingredients-bell", 0, 1);
             foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
                 ingredient = ingredientInDictionary.Key;
                 if (
@@ -126,8 +127,10 @@ public class Order : MonoBehaviour
                 m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
 
                 m_Step++;   //Player 2 send the order to Player 1
+                m_GameController.SetInputCounterValue("ingredients-bell", 1, 1);
             }
         } else if (m_Step == 1) {
+            m_GameController.SetInputCounterValue("toppings-bell", 0, 1);
             foreach (Topping topping in m_Recipe.m_Toppings) {
                 if (
                     (topping.m_ToppingName == "quinoa" && Input.GetKeyDown(KeyCode.UpArrow) == true) ||
@@ -162,6 +165,7 @@ public class Order : MonoBehaviour
                 m_GameControllerAudioManager.PlayInputSFX(AudioManager.HEALTHY_MAYHEM_BELL_SFX);
 
                 m_Step++;   //Player 1 send the order to the customer
+                m_GameController.SetInputCounterValue("toppings-bell", 1, 1);
             }
         } else if (m_Step == 2) {
             foreach (var ingredientInDictionary in m_Recipe.m_Ingredients) {
