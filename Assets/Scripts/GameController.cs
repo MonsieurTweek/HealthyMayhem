@@ -183,6 +183,10 @@ public class GameController : MonoBehaviour
             {
                 controller.SetCounter(current, target);
             }
+
+            if (controller.m_QualifiedName == key && key == "shaker" && current >= (target + 1)) {
+                controller.SetCounterColor(current - target);
+            }
         }
     }
 
@@ -199,6 +203,10 @@ public class GameController : MonoBehaviour
             if (controller.m_QualifiedName == key)
             {
                 controller.SetFiller(current, max);
+            }
+
+            if(controller.m_QualifiedName == key && key == "shaker" && current >= (max + 1)) {
+                controller.SetFillerColor(current - max);
             }
         }
     }

@@ -48,9 +48,7 @@ public class Order : MonoBehaviour
         {
             m_GameController.SetInputCounterValue(element.Key.m_IngredientName, 0, element.Value);
         }
-        //m_GameController.SetInputCounterValue("ingredients-bell", 0, 1);
         m_GameController.SetInputCounterValue("shaker", 0, m_Recipe.m_ShakeTime);
-        //m_GameController.SetInputCounterValue("toppings-bell", 0, 1);
 
         foreach (var ingredient in m_Recipe.m_Ingredients) {
             m_IngredientsDone.Add(ingredient.Key, 0);
@@ -177,7 +175,7 @@ public class Order : MonoBehaviour
                 m_InputsIngredient[ingredient] = 0;
             }
 
-            if (m_Status != "failed" && Mathf.RoundToInt(m_Shaking) != m_Recipe.m_ShakeTime) {
+            if (m_Status != "failed" && (Mathf.RoundToInt(m_Shaking) < m_Recipe.m_ShakeTime || Mathf.RoundToInt(m_Shaking) > (m_Recipe.m_ShakeTime + 1))) {
                 m_Status = "failed";
             }
             m_Shaking = 0;

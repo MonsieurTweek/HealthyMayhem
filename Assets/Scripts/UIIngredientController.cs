@@ -16,6 +16,7 @@ public class UIIngredientController : MonoBehaviour
     private Color m_Red = new Color(1f, 0.28f, 0.28f);
     private Color m_Black = new Color(0.12f, 0.12f, 0.12f);
     private Color m_Grey = new Color(0.65f, 0.65f, 0.65f);
+    private Color m_Orange = new Color(0.93f, 0.43f, 0.27f);
 
     // Start is called before the first frame update
     void Awake()
@@ -51,6 +52,18 @@ public class UIIngredientController : MonoBehaviour
         
     }
 
+    public void SetCounterColor(int delta) {
+        switch (delta) {
+            case 1:
+                m_TextComponent.color = m_Orange;
+                break;
+
+            //case 2:
+                //m_TextComponent.color = m_Red;
+                //break;
+        }
+    }
+
     public void ResetInputFillerToDefault() {
         m_FillerComponent.fillAmount = 0;
     }
@@ -58,6 +71,18 @@ public class UIIngredientController : MonoBehaviour
     public void SetFiller(int current, int max)
     {
         m_FillerComponent.fillAmount = (float) current / (float) max;
+    }
+
+    public void SetFillerColor(int delta) {
+        switch(delta) {
+            case 1:
+                m_FillerComponent.color = m_Orange;
+                break;
+
+            case 2:
+                m_FillerComponent.color = m_Red;
+                break;
+        }
     }
 
 }
